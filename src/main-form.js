@@ -6,69 +6,9 @@ export default function Mainform() {
   const[textarea,setTextarea]=useState("")
   const[upload,setUpload]=useState("")
   const[password,setPassword]=useState("")
-  const [chk,setChk]=useState("")
+  const [chk,setChk]=useState(true)
   const [date,setDate]=useState("")
-
-    const RegisterHandler=(event)=>{
-      event.preventDefault()
-     
-      // name
-      var name1=name 
-      // email 
-    var email1=email
-    var atposition=email1.indexOf("@");
-    var dotposition=email1.lastIndexOf(".");
-    var textarea1=textarea
-     var password1=password
-     var mobno1=mobno
-     var upload1=upload
-      // validation
-      if(name1==="" && email1==="" && password1==="" && textarea1==="" && mobno1==="" && upload1==="" ){
-        alert("All boxes should be filled");
-      }
-      else if (name1==="") {
-        alert("Please write Your name");
-        document.form.name.focus();
-      }
-      else if(!isNaN(name1)){
-        alert("Name should not be integer");
-        document.form.name.focus();
-      }
-      else if(email1===""){
-        alert("Plese enter your email")
-      }
-      else if ((atposition<1 || email1.lastIndexOf(".")<atposition+2 || dotposition+2>=email1.length)) {
-        alert("please enter valid email");
-        document.form.email.focus();
-      }
-      else if(password1===""){
-        alert("Enter Your password within 8 to 15 range");
-        document.form.password.focus();
-      }
-      else if(textarea1===""){
-        alert("Please enter your full address");
-        document.form.textarea.focus();
-      }
-      else if(mobno1===""){
-        alert("Enter your mobile number")
-      }
-      else if(isNaN(mobno1)){
-         alert("number should be integer")
-         document.form.number.focus();
-      }
-      else if(chk===""){
-        alert("Select your Hobbies");
-      }
-      else if(upload1===""){
-        alert("Plese upload your Image")
-      }
-      else if(date===""){
-        alert("Plese enter your date of Birth");
-      }
-    }
-
-
-    // ****************** Here i am taking the values from user ***********************
+// ****************** Here i am taking the values from user ***********************
   const nameHandler=(e)=>{
     let name1=e.target.value;
     setName(name1)
@@ -94,6 +34,79 @@ const fileHandler=(e)=>{
 const dateHandler=(e)=>{
   setDate(e.target.value)
 }
+
+    const RegisterHandler=(event)=>{
+      event.preventDefault()
+     
+      // name
+      var name1=name 
+      // email 
+    var email1=email
+    var atposition=email1.indexOf("@");
+    var dotposition=email1.lastIndexOf(".");
+    var textarea1=textarea
+     var password1=password
+     var mobno1=mobno
+     var upload1=upload
+     console.log(password);
+      // validation for every fields
+      if(name1==="" && email1==="" && password1==="" && textarea1==="" && mobno1==="" && upload1==="" ){
+        alert("All boxes should be filled");
+        document.form.name.focus();
+      }
+      else if (name1==="") {
+        alert("Please write Your name");
+        document.form.name.focus();
+      }
+      else if(!isNaN(name1)){
+        alert("Name should not be integer");
+        document.form.name.focus();
+      }
+      else if(email1===""){
+        alert("Plese enter your email")
+        document.form.emails.focus();
+      }
+      else if ((atposition<1 || email1.lastIndexOf(".")<atposition+2 || dotposition+2>=email1.length)) {
+        alert("please enter valid email");
+        document.form.emails.focus();
+      }
+      else if(password===""){
+        alert("Enter Your password");
+        document.form.password.focus();
+      }
+      else if(password.length<=4){
+        alert("it should be atleat 4 length");
+        document.form.password.focus();
+      }
+      else if(textarea1===""){
+        alert("Please enter your full address");
+        document.form.textarea.focus();
+      }
+      else if(mobno1===""){
+        alert("Enter your mobile number");
+        document.form.number.focus();
+      }
+      else if(isNaN(mobno1)){
+         alert("number should be integer")
+         document.form.number.focus();
+      }
+      else if(chk===""){
+        alert("Select your Hobbies");
+      }
+      else if(chk===true){
+        alert("Select your Hobbies");
+      }
+      else if(upload1===""){
+        alert("Plese upload your Image")
+      }
+      else if(date===""){
+        alert("Plese enter your date of Birth");
+      }
+      else{
+        alert("Data Saved!")
+      }
+    }
+
   return (
     <div>
       <center>
@@ -107,16 +120,16 @@ const dateHandler=(e)=>{
               </tr>
             <tr>
               <th>Enter your Email</th>
-              <td> <input name='email'  type="email" onChange={emailHandler}/> </td>
+              <td> <input name='emails' type="email" onChange={emailHandler}/> </td>
               </tr>
             <tr>
               <th>Enter your Password</th>
-              <td><input type="Password"  minLength="8" maxLength="15" name='password' onClick={passwordHandler} />
+              <td><input type="Password" name='password' onChange={passwordHandler} minLength={4} />
               </td>
               </tr>
             <tr>
               <th>Enter your Address</th> 
-              <td> <textarea type="text"  name='textarea' onChange={textareaHandler} /></td>
+              <td> <textarea type="text"  name='textarea' onChange={textareaHandler} minLength="18" maxLength="80" /></td>
               </tr>
             <tr>
               <th>Enter your Mobile no</th>
