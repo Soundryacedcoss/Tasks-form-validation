@@ -86,6 +86,10 @@ const dateHandler=(e)=>{
         alert("Enter your mobile number");
         document.form.number.focus();
       }
+      else if(mobno1.length<10 ){
+        alert("mobile number length should be 10");
+        document.form.number.focus();
+      }
       else if(isNaN(mobno1)){
          alert("number should be integer")
          document.form.number.focus();
@@ -129,11 +133,11 @@ const dateHandler=(e)=>{
               </tr>
             <tr>
               <th>Enter your Address</th> 
-              <td> <textarea type="text"  name='textarea' onChange={textareaHandler} minLength="18" maxLength="80" /></td>
+              <td> <textarea type="text"  name='textarea' onChange={textareaHandler} minLength="8" maxLength="30"/></td>
               </tr>
             <tr>
               <th>Enter your Mobile no</th>
-              <td><input type="text" name='number' value={mobno} minLength="9" maxLength="10" onChange={numberHandler} /></td>
+              <td><input type="text" name='number' value={mobno} minLength="10" maxLength="10" onChange={numberHandler} required /></td>
               </tr>
             <tr>
               <th>Select your gender</th>
